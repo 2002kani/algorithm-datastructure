@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class NodeMain {
 	public static void main(String[] args) {
-		Node head = new Node(0);
-		Node nodeA = new Node(1);
+		Node head = new Node(3);
+		Node nodeA = new Node(4);
 		Node nodeB = new Node(2);
-		Node nodeC = new Node(3);
-		Node nodeD = new Node(4);
+		Node nodeC = new Node(8);
+		Node nodeD = new Node(6);
 		Node nodeE = new Node(5);
 		
 		head.next = nodeA;
@@ -15,6 +15,7 @@ public class NodeMain {
 		nodeC.next = nodeD;
 		nodeD.next = nodeE;
 		
+		addNodes(head);
 		// findNodePos(head, NodeD)
 	}
 	
@@ -35,5 +36,17 @@ public class NodeMain {
 	}
 	
 	
-	// 
+	// Addiere alle Nodes innerhalb LinkedList
+	static void addNodes(Node head) {
+		
+		Node current = head;
+		int counter = 0;
+		
+		while(current != null) {
+			counter += current.data;
+			current = current.next;
+		}
+		
+		System.out.println(counter);
+	}
 }
