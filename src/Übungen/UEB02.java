@@ -28,8 +28,14 @@ public class UEB02 {
 		sprache4.naechster = sprache5;
 		sprache5.naechster = sprache6;
 		
+		System.out.println("Vor der Methode: ");
 		printLinkedList(sprache1);
 		
+		System.out.println("");
+		sprache1 = anfuegen(sprache1, "- REACT -", 3);
+		
+		System.out.println("Nach der Methode: ");
+		printLinkedList(sprache1);
 	}
 	
 	
@@ -44,10 +50,35 @@ public class UEB02 {
 			current = current.naechster;
 		}
 	}
-	
-	// Anfügen von einem Link in der Mitte der Liste - Bsp: anfuegen("React", 3);
-	static void anfuegen(Link<String> sprache, int position) {
 		
+	// Einfügen von einem Link am Anfang der Liste 
+	static Link<String> einfügenAmAnfang(Link<String> alterAnfang, String daten) {
+		return new Link<String>(daten, alterAnfang);
+	}	
+	
+	// Anfügen von einem Link in der Mitte der Liste (mit hilfe) - Bsp: anfuegen(Anfang, "React", 3);
+	static Link<String> anfuegen(Link<String> anfang, String daten, int position) {
+		if(position <= 0 || anfang == null) {
+			return new Link<String>(daten, anfang);
+		}
+		
+		Link<String> current = anfang;
+		int counter = 1;
+		
+		while(current != null && counter != position -1) {
+			current = current.naechster;
+			counter++;
+		}
+		
+		// Falls Position die Links überschreitet
+		if(current == null) {
+			return anfang;
+		}
+		
+		Link<String> neuerKnoten = new Link<String>(daten, current.naechster);
+		current.naechster = neuerKnoten;
+		
+		return anfang;
 	}
 	
 	// Entfernen von einem Link in der Mitte der Liste - Bsp: entfernen("React", 3);
