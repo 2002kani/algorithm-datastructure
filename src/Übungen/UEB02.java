@@ -34,7 +34,13 @@ public class UEB02 {
 		System.out.println("");
 		sprache1 = anfuegen(sprache1, "- REACT -", 3);
 		
-		System.out.println("Nach der Methode: ");
+		System.out.println("Nach der Methode (einfügen): ");
+		printLinkedList(sprache1);
+		
+		System.out.println("");
+		sprache1 = entfernen(sprache1, 3);
+		
+		System.out.println("Nach der Methode (entfernen): ");
 		printLinkedList(sprache1);
 	}
 	
@@ -50,13 +56,15 @@ public class UEB02 {
 			current = current.naechster;
 		}
 	}
-		
+	
+	
 	// Einfügen von einem Link am Anfang der Liste 
 	static Link<String> einfügenAmAnfang(Link<String> alterAnfang, String daten) {
 		return new Link<String>(daten, alterAnfang);
 	}	
 	
-	// Anfügen von einem Link in der Mitte der Liste (mit hilfe) - Bsp: anfuegen(Anfang, "React", 3);
+	
+	// Anfügen von einem Link in der Mitte der Liste (mit anfang)
 	static Link<String> anfuegen(Link<String> anfang, String daten, int position) {
 		if(position <= 0 || anfang == null) {
 			return new Link<String>(daten, anfang);
@@ -81,9 +89,34 @@ public class UEB02 {
 		return anfang;
 	}
 	
-	// Entfernen von einem Link in der Mitte der Liste - Bsp: entfernen("React", 3);
-	static void entfernen(Link<String> sprache, int position) {
-		
-	}
 	
+	// Entfernen von einen Knoten irgendwo (mit anfang)
+	static Link<String> entfernen(Link<String> anfang, int position) {
+		if(anfang == null) {
+			return null;
+		}
+		
+		if(position <= 1) {
+			return anfang.naechster;
+		}
+		
+		Link<String> aktuell = anfang;
+		int zähler = 1;
+		
+		while(aktuell.naechster != null && zähler < position - 1) {
+			aktuell = aktuell.naechster;
+			zähler++;
+		}
+		
+		if(aktuell.naechster == null) {
+			return anfang;
+		}
+		
+		aktuell.naechster = aktuell.naechster.naechster;
+		
+		return anfang;
+	}
 }
+
+
+
