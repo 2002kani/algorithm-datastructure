@@ -58,6 +58,29 @@ public class UEB02 {
 	}
 	
 	
+	static Link<String> inMitteEinfügen(Link<String> anfang, String daten, int position){
+		if(position <= 1 || anfang == null) {
+			return new Link<String>(daten, anfang);
+		}
+		
+		Link<String> aktuell = anfang;
+		int zähler = 1;
+		
+		while(aktuell != null && zähler <= position - 1) {
+			aktuell = aktuell.naechster;
+			zähler++;
+		}
+		
+		Link<String> neuesEnde = new Link<String>(daten, aktuell.naechster);
+		aktuell.naechster = neuesEnde;
+		
+		return anfang;
+	}
+	
+	
+	
+	
+	
 	// Einfügen von einem Link am Anfang der Liste 
 	static Link<String> einfügenAmAnfang(Link<String> alterAnfang, String daten) {
 		return new Link<String>(daten, alterAnfang);
