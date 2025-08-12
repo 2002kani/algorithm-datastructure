@@ -26,7 +26,7 @@ public class schemas {
 	}
 	
 	
-	// Prüfen ob ein Knoten ein Blatt ist
+	// Prüfen ob ein Knoten ein Blatt ist 
 	public boolean istBlatt(Node knoten) {
 		assert(knoten != null);
 		
@@ -139,7 +139,7 @@ public class schemas {
 		String aktuell = k.key + " ";
 		String links = absteigend(k.left);
 		
-		return rechts + aktuell + k.left;
+		return rechts + aktuell + links;
 	}
 	
 	
@@ -174,6 +174,24 @@ public class schemas {
 				aktuell = aktuell.right;
 			}
 		}
+		return false;
+	}
+	
+	
+	// Rekursiv im Suchbaum suchen
+	public boolean suchen(Node knoten, int wert) {
+		if(knoten == null) {
+			return false;
+		}
+		
+		if(wert == knoten.schlüssel) {
+			return true;
+		} else if(wert < knoten.schlüssel) {
+			return suchen(knoten.left, wert);
+		} else if(wert > knoten.schlüssel) {
+			return suchen(knoten.right, wert);
+		}
+		
 		return false;
 	}
 }
